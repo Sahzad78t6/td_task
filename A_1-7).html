@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>College Course Registration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #dbeafe, #f0f9ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            width: 450px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            color: darkblue;
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 90%;
+            padding: 10px;
+            margin: 12px 0;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid gray;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>College Course Registration</h2>
+
+       
+        <select id="faculty" onchange="loadDepartments()">
+            <option value="">Select Faculty</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Science">Science</option>
+            <option value="Arts">Arts</option>
+        </select>
+
+        <select id="department" onchange="loadCourses()">
+            <option value="">Select Department</option>
+        </select>
+
+        <select id="course">
+            <option value="">Select Course</option>
+        </select>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+   
+        const data = {
+            Engineering: {
+                CSE: ["Data Structures", "Java Programming", "AI & ML"],
+                IT: ["Python", "Web Technologies", "Cloud Computing"],
+                ECE: ["Digital Electronics", "VLSI Design", "Signals"],
+                CIVIL: ["Structural Engineering", "Surveying", "Concrete Technology"]
+            },
+
+            Science: {
+                Physics: ["Quantum Mechanics", "Thermodynamics"],
+                Chemistry: ["Organic Chemistry", "Physical Chemistry"],
+                Mathematics: ["Calculus", "Linear Algebra"]
+            },
+
+            Arts: {
+                History: ["World History", "Indian Culture"],
+                Economics: ["Micro Economics", "Macro Economics"],
+                Psychology: ["Behavioral Science", "Cognitive Psychology"]
+            }
+        };
+
+       
+        function loadDepartments() {
+            let faculty = document.getElementById("faculty").value;
+            let departmentDropdown = document.getElementById("department");
+            let courseDropdown = document.getElementById("course");
+
+           
+            departmentDropdown.innerHTML = "<option value=''>Select Department</option>";
+            courseDropdown.innerHTML = "<option value=''>Select Course</option>";
+
+            if (faculty !== "") {
+                let departments = Object.keys(data[faculty]);
+
+                departments.forEach(dept => {
+                    let option = document.createElement("option");
+                    option.value = dept;
+                    option.textContent = dept;
+                    departmentDropdown.appendChild(option);
+                });
+            }
+        }
+
+  
+        function loadCourses() {
+            let faculty = document.getElementById("faculty").value;
+            let department = document.getElementById("department").value;
+            let courseDropdown = document.getElementById("course");
+
+        
+            courseDropdown.innerHTML = "<option value=''>Select Course</option>";
+
+            if (department !== "") {
+                let courses = data[faculty][department];
+
+                courses.forEach(course => {
+                    let option = document.createElement("option");
+                    option.value = course;
+                    option.textContent = course;
+                    courseDropdown.appendChild(option);
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>

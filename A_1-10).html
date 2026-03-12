@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Event Reminder Countdown</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("https://images.unsplash.com/photo-1506784983877-45594efa4cbe")
+                        no-repeat center center/cover;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 500px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1 {
+            color: darkblue;
+        }
+
+        input, button {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid gray;
+            font-size: 16px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .event-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f3f4f6;
+            font-size: 18px;
+        }
+
+        .near {
+            background: #facc15 !important;
+            color: black;
+        }
+
+        .danger {
+            background: #dc2626 !important;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>📌 Event Reminder System</h1>
+
+        <input type="text" id="eventName" placeholder="Enter Event Name">
+
+        <input type="date" id="eventDate">
+
+        <input type="time" id="eventTime">
+
+        <button onclick="startCountdown()">Start Countdown</button>
+
+      
+        <div id="eventsList"></div>
+    </div>
+
+    <script>
+        let events = [];
+
+        function startCountdown() {
+            let name = document.getElementById("eventName").value;
+            let date = document.getElementById("eventDate").value;
+            let time = document.getElementById("eventTime").value;
+
+            if (name === "" || date === "" || time === "") {
+                alert("⚠ Please fill all details!");
+                return;
+            }
+
+     
+            let eventDateTime = new Date(date + "T" + time);
+
+          
+            let eventObj = {
+                name: name,
+                datetime: eventDateTime,
+                id: Date.now()
+            };
+
+            events.push(eventObj);
+            displayEvents();
+        }
+
+        function displayEvents() {
+            let eventsList = document.getElementById("eventsList");
+            eventsList.innerHTML = "";
+
+            events.forEach((event) => {
+
+        
+                let div = document.createElement("div");
+                div.classList.add("event-box");
+                div.id = event.id;
+
+                eventsList.appendChild(div);
+
+                
+                runCountdown(event);
+            });
+        }
+
+        function runCountdown(event) {
+            let timer = setInterval(() => {
+                let now = new Date().getTime();
+                let distance = event.datetime - now;
+
+                let box = document.getElementById(event.id);
+
+                // Countdown Finished
+                if (distance <= 0) {
+                    clearInterval(timer);
+                    box.innerHTML = `
+                        <h3>Event: ${event.name}</h3>
+                        <p>✅ Event Started!</p>
+                    `;
+                    alert("🎉 Reminder: " + event.name + " has started!");
+                    return;
+                }
+
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                box.innerHTML = `
+                    <h3>Event: ${event.name}</h3>
+                    <p><b>Time Remaining:</b> 
+                    ${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds</p>
+                `;
+
+             
+                if (days === 0 && hours < 2) {
+                    box.classList.add("danger");
+                }
+                else if (days === 0) {
+                    box.classList.add("near");
+                }
+
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>

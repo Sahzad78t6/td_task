@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #dbeafe, #f0f9ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            width: 550px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        fieldset {
+            border: 2px solid #2563eb;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, textarea, select {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid gray;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .options {
+            margin-top: 8px;
+        }
+
+        button {
+            width: 48%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background: #2563eb;
+            color: white;
+        }
+
+        button[type="reset"] {
+            background: #dc2626;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<form onsubmit="return validateForm()">
+
+    <h2>Student Registration Form</h2>
+
+
+    <fieldset>
+        <legend>Personal Information</legend>
+
+        <label>Full Name</label>
+        <input type="text" id="fullname" placeholder="Enter Full Name">
+        <p class="error" id="nameError"></p>
+
+        <label>Email ID</label>
+        <input type="email" id="email" placeholder="Enter Email">
+        <p class="error" id="emailError"></p>
+
+        <label>Password</label>
+        <input type="password" id="pass" placeholder="Enter Password">
+        <p class="error" id="passError"></p>
+
+        <label>Date of Birth</label>
+        <input type="date" id="dob">
+        <p class="error" id="dobError"></p>
+
+        <label>Gender</label>
+        <div class="options">
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+        </div>
+        <p class="error" id="genderError"></p>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Contact Details</legend>
+
+        <label>Mobile Number</label>
+        <input type="text" id="mobile" placeholder="Enter 10 digit Mobile Number">
+        <p class="error" id="mobileError"></p>
+
+        <label>Address</label>
+        <textarea id="address" rows="3" placeholder="Enter Address"></textarea>
+        <p class="error" id="addressError"></p>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Academic Information</legend>
+
+        <label>Department</label>
+        <select id="dept">
+            <option value="">Select Department</option>
+            <option>CSE</option>
+            <option>IT</option>
+            <option>ECE</option>
+            <option>CIVIL</option>
+        </select>
+        <p class="error" id="deptError"></p>
+
+        <label>Year of Study</label>
+        <select id="year">
+            <option value="">Select Year</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+        </select>
+        <p class="error" id="yearError"></p>
+    </fieldset>
+
+    
+    <fieldset>
+        <legend>Technical Skills</legend>
+
+        <div class="options">
+            <input type="checkbox" name="skill" value="HTML"> HTML
+            <input type="checkbox" name="skill" value="CSS"> CSS
+            <input type="checkbox" name="skill" value="JavaScript"> JavaScript
+            <input type="checkbox" name="skill" value="Python"> Python
+        </div>
+        <p class="error" id="skillError"></p>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Login Details</legend>
+
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Enter Username">
+        <p class="error" id="userError"></p>
+
+        <label>Password</label>
+        <input type="password" id="loginpass" placeholder="Enter Password">
+        <p class="error" id="loginPassError"></p>
+    </fieldset>
+
+    <fieldset>
+        <legend>Action Buttons</legend>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </fieldset>
+
+</form>
+
+
+<script>
+function validateForm() {
+
+    document.querySelectorAll(".error").forEach(e => e.innerHTML = "");
+
+    let valid = true;
+
+    let name = document.getElementById("fullname").value;
+    if (name === "" || name.length < 3) {
+        document.getElementById("nameError").innerHTML =
+            "Full Name must be at least 3 characters!";
+        valid = false;
+    }
+
+  
+    let email = document.getElementById("email").value;
+    if (email === "") {
+        document.getElementById("emailError").innerHTML =
+            "Email cannot be empty!";
+        valid = false;
+    }
+
+
+    let pass = document.getElementById("pass").value;
+    if (pass.length < 8) {
+        document.getElementById("passError").innerHTML =
+            "Password must be minimum 8 characters!";
+        valid = false;
+    }
+
+    let dob = document.getElementById("dob").value;
+    if (dob === "") {
+        document.getElementById("dobError").innerHTML =
+            "Please select Date of Birth!";
+        valid = false;
+    }
+
+ 
+    let gender = document.querySelector('input[name="gender"]:checked');
+    if (!gender) {
+        document.getElementById("genderError").innerHTML =
+            "Please select Gender!";
+        valid = false;
+    }
+
+
+    let mobile = document.getElementById("mobile").value;
+    if (!mobile.match(/^\d{10}$/)) {
+        document.getElementById("mobileError").innerHTML =
+            "Mobile Number must be exactly 10 digits!";
+        valid = false;
+    }
+
+  
+    let address = document.getElementById("address").value;
+    if (address === "") {
+        document.getElementById("addressError").innerHTML =
+            "Address cannot be empty!";
+        valid = false;
+    }
+
+ 
+    let dept = document.getElementById("dept").value;
+    if (dept === "") {
+        document.getElementById("deptError").innerHTML =
+            "Please select Department!";
+        valid = false;
+    }
+
+
+    let year = document.getElementById("year").value;
+    if (year === "") {
+        document.getElementById("yearError").innerHTML =
+            "Please select Year of Study!";
+        valid = false;
+    }
+
+    let skills = document.querySelectorAll('input[name="skill"]:checked');
+    if (skills.length === 0) {
+        document.getElementById("skillError").innerHTML =
+            "Select at least one skill!";
+        valid = false;
+    }
+
+    let username = document.getElementById("username").value;
+    if (username === "") {
+        document.getElementById("userError").innerHTML =
+            "Username cannot be empty!";
+        valid = false;
+    }
+
+
+    let loginpass = document.getElementById("loginpass").value;
+    if (loginpass.length < 8) {
+        document.getElementById("loginPassError").innerHTML =
+            "Login password must be minimum 8 characters!";
+        valid = false;
+    }
+
+ 
+    if (valid) {
+        alert("✅ Registration Successful!");
+    }
+
+    return valid;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #dbeafe, #f0f9ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            color: darkblue;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid gray;
+            font-size: 16px;
+        }
+
+        button {
+            width: 45%;
+            padding: 10px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .add { background: #2563eb; color: white; }
+        .sub { background: #dc2626; color: white; }
+        .mul { background: #16a34a; color: white; }
+        .div { background: #ca8a04; color: white; }
+
+        button:hover {
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+        <h2>Simple Calculator</h2>
+
+        <input type="number" id="num1" placeholder="Enter First Number">
+        <input type="number" id="num2" placeholder="Enter Second Number">
+
+        <br>
+        <button class="add" onclick="add()">Add</button>
+        <button class="sub" onclick="subtract()">Subtract</button>
+        <br>
+        <button class="mul" onclick="multiply()">Multiplication</button>
+        <button class="div" onclick="divide()">Division</button>
+    </div>
+    <script>
+        function add() {
+            let a = Number(document.getElementById("num1").value);
+            let b = Number(document.getElementById("num2").value);
+            alert("Addition Result = " + (a + b));
+        }
+
+        function subtract() {
+            let a = Number(document.getElementById("num1").value);
+            let b = Number(document.getElementById("num2").value);
+            alert("Subtraction Result = " + (a - b));
+        }
+
+        function multiply() {
+            let a = Number(document.getElementById("num1").value);
+            let b = Number(document.getElementById("num2").value);
+            alert("Multiplication Result = " + (a * b));
+        }
+
+        function divide() {
+            let a = Number(document.getElementById("num1").value);
+            let b = Number(document.getElementById("num2").value);
+
+            if (b === 0) {
+                alert("Division by zero is not allowed!");
+            } else {
+                alert("Division Result = " + (a / b));
+            }
+        }
+    </script>
+
+</body>
+</html>

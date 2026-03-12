@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #dbeafe, #f0f9ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        form {
+            width: 500px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+            margin-bottom: 20px;
+        }
+
+        fieldset {
+            border: 2px solid #2563eb;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #1e3a8a;
+            padding: 5px 10px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid gray;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .options {
+            margin-top: 8px;
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background: #2563eb;
+            color: white;
+        }
+
+        button[type="reset"] {
+            background: #dc2626;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <form>
+        <h1>Registration Form</h1>
+
+        <fieldset>
+            <legend>Personal Information</legend>
+
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter Full Name" required>
+
+            <label>Email</label>
+            <input type="email" placeholder="Enter Email" required>
+
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password" required>
+
+            <label>Date of Birth</label>
+            <input type="date" required>
+
+            <label>Gender</label>
+            <div class="options">
+                <input type="radio" name="gender" required> Male
+                <input type="radio" name="gender"> Female
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Contact Information</legend>
+
+            <label>Phone Number</label>
+            <input type="tel" maxlength="10" placeholder="Enter Phone Number" required>
+
+            <label>Address</label>
+            <textarea rows="3" placeholder="Enter Address"></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Academic Information</legend>
+
+            <label>Department</label>
+            <select required>
+                <option value="">Select Department</option>
+                <option>CSE</option>
+                <option>ECE</option>
+                <option>IT</option>
+                <option>MECH</option>
+                <option>CIVIL</option>
+            </select>
+
+            <label>Year of Study</label>
+            <select required>
+                <option value="">Select Year</option>
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option>3rd Year</option>
+                <option>4th Year</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Skills</legend>
+
+            <label>Technical Skills</label>
+            <div class="options">
+                <input type="checkbox"> HTML  
+                <input type="checkbox"> CSS  
+                <input type="checkbox"> JavaScript  
+                <input type="checkbox"> Python  
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Login Details</legend>
+
+            <label>Username</label>
+            <input type="text" placeholder="Enter Username" required>
+
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Action Buttons</legend>
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </fieldset>
+
+    </form>
+
+</body>
+</html>
